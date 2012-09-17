@@ -1,21 +1,9 @@
 <?php
-/**
- * jwplayer
- * 
- * PHP static class used to auto include the js source file and output the code necessary to be playing a video
- * quickly and easily, using the jwplayer video player.
- * 
- * @package jwplayer
- * @author Stuart Duncan
- * @copyright TyCam Technologies
- * @version 1
- * @access public
- */
 class jwplayer {
 	/**
 	 * Please enter the location to the jwplayer.js file here
 	 **/
-	static private $js = '/jwplayer/jwplayer.js';
+	static private $js = 'jwplayer/jwplayer.js';
 	static private $js_included = false;
 
 	/**
@@ -31,6 +19,8 @@ class jwplayer {
 	static private $playlist = false;
 	static private $playlist_position = 'right';
 	static private $playlist_size = 250;
+
+	static private $path = 'jwplayer/';
 
 	/**
 	 * jwplayer::play()
@@ -71,10 +61,13 @@ class jwplayer {
 			$jw_args['file'] = $file;
 		}
 
+		// path to the player.swf
+		$path = ( !empty($path) ) ? $path : self::$path;
+
 		$jw_args['id'] = ( !empty($playerID) ) ? $playerID : 'playerID';
 		$jw_args['width'] = ( !empty($width) ) ? $width : 1280;
 		$jw_args['height'] = ( !empty($height) ) ? $height: 720;
-		$jw_args['flashplayer'] = ( !empty($path) ) ? $path . 'player.swf' : 'player.swf';
+		$jw_args['flashplayer'] = $path . 'player.swf';
 		$jw_args['image'] = ( !empty($image) ) ? $image : null;
 
 		// A class name for the divs.

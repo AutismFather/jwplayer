@@ -19,6 +19,8 @@ Some features:<br />
 <li>Auto uses the playlist features if an array of files is passed instead of just one file.</li>
 <li>Auto does the math on a player size if a playlist is included. So a video at 480 and a playlist at 250 will create a player at 730.</li>
 </ul>
+Visit the github repository for this PHP class here: <a href="https://github.com/TyCamTech/jwplayer">https://github.com/TyCamTech/jwplayer</a>
+<br /><br />
 See some examples below.
 <br /><br />
 
@@ -28,14 +30,14 @@ See some examples below.
 jwplayer::play('http://www.youtube.com/watch?v=IrqDfSvUpoU', array(
 	'width' => 480,
 	'height' => 360,
-	'image' => 'avengershulk.jpg'
+	'image' => 'jwplayer/avengershulk.jpg'
 ));
 ?>
 The code: <br />
 jwplayer::play('http://www.youtube.com/watch?v=IrqDfSvUpoU', array( <br />
 	'width' => 480,<br />
 	'height' => 360,<br />
-	'image' => 'avengershulk.jpg'<br />
+	'image' => 'jwplayer/avengershulk.jpg'<br />
 ));
 </div>
 
