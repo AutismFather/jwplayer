@@ -99,6 +99,7 @@ The Code: <br />
 <li>playerID - The ID of the actual player itself. Defaults to playerID.</li>
 <li>width - The width of the video</li>
 <li>height - The height of the video</li>
+<li>autostart - Have a video start as soon as it loads or wait for the user to press play</li>
 <li>js - The file and filename (ie, /jwplayer/jwplayer.js) location of the 'jwplayer.js' file. Default is set in jwplayer.php</li>
 <li>swf - The file and filename (ie, /jwplayer/player.swf) location of the 'player.swf' file. Default is set in jwplayer.php</li>
 <li>image - An image to use as a placeholder until the video is played</li>

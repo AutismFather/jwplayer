@@ -23,6 +23,11 @@ class jwplayer {
 	static private $default_height = 360;
 
 	/**
+	 * Auto start video(s)?
+	 **/
+	static private $autostart = 'false';
+
+	/**
 	 * Default prefix for the divs that will contain the videos.
 	 * The video ID will come after.
 	 **/
@@ -91,6 +96,7 @@ class jwplayer {
 		$jw_args['height'] = ( !empty($height) ) ? $height: self::$default_height;
 		$jw_args['flashplayer'] = $swf;
 		$jw_args['image'] = ( !empty($image) ) ? $image : null;
+		$jw_args['autostart'] = ( !empty($autostart) ) ? $autostart : self::$autostart;
 
 		// A class name for the divs.
 		$className = ( !empty($class) ) ? $class : self::$classname;
