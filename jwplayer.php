@@ -1,10 +1,26 @@
 <?php
+/**
+ * jwplayer
+ * This PHP file will take the burden out of putting JS all over your page
+ * and having to remember div names and all that tedious stuff.
+ * 
+ * @package jwplayer
+ * @author Stuart Duncan
+ * @copyright TyCam Technologies
+ * @access public
+ */
 class jwplayer {
 	/**
-	 * Please enter the location to the jwplayer.js file here
+	 * Please enter the location to the jwplayer.js and player.swf files here
 	 **/
 	static private $js = 'jwplayer/jwplayer.js';
-	static private $js_included = false;
+	static private $swf = 'jwplayer/player.swf';
+
+	/**
+	 * Default dimensions
+	 **/
+	static private $default_width = 480;
+	static private $default_height = 360;
 
 	/**
 	 * Default prefix for the divs that will contain the videos.
@@ -20,7 +36,12 @@ class jwplayer {
 	static private $playlist_position = 'right';
 	static private $playlist_size = 250;
 
-	static private $path = 'jwplayer/';
+
+
+	/**********************************************************************/
+	/*** Do Not Edit Below This Line Unless You Know What You Are Doing ***/
+	/**********************************************************************/
+	static private $js_included = false;
 
 	/**
 	 * jwplayer::play()
@@ -33,14 +54,15 @@ class jwplayer {
 	static function play($file = null, $params = null){
 		$output = '';
 
-		// First the js file. Must be included. But only once.
-		if( self::$js_included === false ){
-			echo '<script type="text/javascript" src="' . self::$js . '"></script>' . "\n";
-			self::$js_included = true;
-		}
-
 		// extract the params
 		if( !empty($params) && is_array($params) ){ extract($params); }
+
+		// First the js file. Must be included. But only once.
+		$js = ( !empty($js) ) ? $js : self::$js;
+		if( self::$js_included === false ){
+			echo '<script type="text/javascript" src="' . $js . '"></script>' . "\n";
+			self::$js_included = true;
+		}
 
 		// The ID. Usually the database ID of the video. If not included, a random # will be picked.
 		$div_id = ( !empty($id) ) ? self::$id_prefix . $id : self::$id_prefix . rand(10,9999);
@@ -62,12 +84,12 @@ class jwplayer {
 		}
 
 		// path to the player.swf
-		$path = ( !empty($path) ) ? $path : self::$path;
+		$swf = ( !empty($swf) ) ? $swf : self::$swf;
 
 		$jw_args['id'] = ( !empty($playerID) ) ? $playerID : 'playerID';
-		$jw_args['width'] = ( !empty($width) ) ? $width : 1280;
-		$jw_args['height'] = ( !empty($height) ) ? $height: 720;
-		$jw_args['flashplayer'] = $path . 'player.swf';
+		$jw_args['width'] = ( !empty($width) ) ? $width : self::$default_width;
+		$jw_args['height'] = ( !empty($height) ) ? $height: self::$default_height;
+		$jw_args['flashplayer'] = $swf;
 		$jw_args['image'] = ( !empty($image) ) ? $image : null;
 
 		// A class name for the divs.
